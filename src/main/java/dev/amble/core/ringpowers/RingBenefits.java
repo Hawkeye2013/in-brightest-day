@@ -77,7 +77,7 @@ public final class RingBenefits {
         if (player.isOnFire()) player.clearFire();
         if (player.getFoodData().getFoodLevel() < 1) player.getFoodData().setFoodLevel(1);
 
-        if (serverTick % REGEN_INTERVAL == 0 && player.isAlive() && player.getHealth() < player.getMaxHealth() && !((CombatTrackerAccessor) player).getInCombat()) {
+        if (serverTick % REGEN_INTERVAL == 0 && player.isAlive() && player.getHealth() < player.getMaxHealth() && !((CombatTrackerAccessor) player.getCombatTracker()).getInCombat()) {
             player.heal(REGEN_AMOUNT);
         }
 
