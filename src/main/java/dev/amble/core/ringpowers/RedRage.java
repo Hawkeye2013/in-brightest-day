@@ -35,7 +35,7 @@ import java.util.UUID;
 
 public final class RedRage {
     private static final int RED = LanternCorps.RED.color();
-    private static final float RAGE_DAMAGE = 0.5F;
+    private static final float RAGE_DAMAGE = 0.35F;
     private static final int CHARGE_PER_DAMAGE_DEALT = 4;
     private static final int CHARGE_PER_DAMAGE_TAKEN = 6;
     private static final int RETALIATION_BURN_SECONDS = 4;
