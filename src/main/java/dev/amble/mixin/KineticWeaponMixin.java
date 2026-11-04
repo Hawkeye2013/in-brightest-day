@@ -17,7 +17,7 @@ public class KineticWeaponMixin {
     @WrapOperation(method = "damageEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;stabAttack(Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/entity/Entity;FZZZ)Z"))
     public boolean stabAttack(LivingEntity instance, EquipmentSlot weaponSlot, Entity target, float baseDamage, boolean dealsDamage, boolean dealsKnockback, boolean dismounts, Operation<Boolean> original) {
         if (instance instanceof Player player && FlightRingPower.isFlying(player))
-            baseDamage = Math.min(baseDamage, FlightRingPower.isBoosting(player) ? 13 : 10);
+            baseDamage = Math.min(baseDamage, FlightRingPower.isBoosting(player) ? 39 : 30);
 
         return original.call(instance, weaponSlot, target, baseDamage, dealsDamage, dealsKnockback, dismounts);
     }
