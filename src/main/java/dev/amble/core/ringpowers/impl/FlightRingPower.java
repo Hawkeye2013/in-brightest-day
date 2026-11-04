@@ -12,6 +12,7 @@ import dev.amble.core.ringpowers.RingPower;
 import dev.amble.core.ringpowers.RingPowerCategory;
 import dev.amble.core.ringpowers.RingPowerRegistry;
 import dev.amble.core.ringpowers.OrangeHoard;
+import dev.amble.mixin.CombatTrackerAccessor;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.DamageTypeTags;
@@ -132,7 +133,8 @@ public class FlightRingPower extends RingPower<FlightRingPower.Data> {
     }
 
     public static double cruiseSpeed(Player player) {
-        return speedForLevel(speedLevel(player));
+        double result = speedForLevel(speedLevel(player));
+        return ((CombatTrackerAccessor) player.getCombatTracker()).getInCombat() ? Math.min(result, speedForLevel(SPEED_LEVELS / 2)) : result;
     }
 
     public static double boostSpeed(double cruise) {
