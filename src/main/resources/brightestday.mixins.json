@@ -13,6 +13,7 @@
     "EntityMixin",
     "GlideLivingEntityMixin",
     "ItemEntityMixin",
+    "KineticWeaponMixin",
     "LivingEntityMixin",
     "MannequinAccessor",
     "MinecraftServerStatusMixin",
