@@ -108,6 +108,11 @@ public abstract class RingPower<D> implements Identifiable, Translatable {
         return this.id().getNamespace() + ".ring_power." + this.id().getPath();
     }
 
+    @Override
+    public int hashCode() {
+        return this.id().hashCode();
+    }
+
     public static class Builder {
         private final Identifier id;
         private final Set<LanternCorps> corps = EnumSet.noneOf(LanternCorps.class);
