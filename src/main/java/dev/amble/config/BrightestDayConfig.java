@@ -330,7 +330,7 @@ public class BrightestDayConfig extends Config {
     @ValidatedDouble.Restrict(min = 1.0, max = 24.0)
     public double fistRange = 7.0;
     @ValidatedDouble.Restrict(min = 0.0, max = 6.0)
-    public double fistKnockback = 2.8;
+    public double fistKnockback = 1.4;
     @ValidatedDouble.Restrict(min = 0.0, max = 8.0)
     public double fistImpactRadius = 2.5;
     @ValidatedFloat.Restrict(min = 0.0F, max = 40.0F)
