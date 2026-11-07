@@ -68,9 +68,11 @@ public final class RedRage {
 
     public static float scale(LivingEntity victim, DamageSource source, float amount) {
         if (!(source.getEntity() instanceof ServerPlayer attacker) || attacker == victim || !isRed(attacker)) return amount;
-        float rage = isBerserk(attacker) ? 1.0F : SpectrumMeters.get(attacker, Emotion.RAGE) / (float) Emotion.MAX;
-        float scaled = amount * (1.0F + RAGE_DAMAGE * rage);
-        return BloodHunt.isPrey(attacker, victim) ? scaled * BloodHunt.DAMAGE_BONUS : scaled;
+        float rage = isBerserk(attacker) ? 1 : SpectrumMeters.get(attacker, Emotion.RAGE) / (float) Emotion.MAX;
+        float scaled = amount * (1f + RAGE_DAMAGE * rage / (1f + rage));
+
+        return BloodHunt.isPrey(attacker, victim) ? scaled
+                * (1f + BloodHunt.DAMAGE_BONUS / (1f + BloodHunt.DAMAGE_BONUS)) : scaled;
     }
 
     public static void onHurt(LivingEntity victim, DamageSource source, float amount) {
