@@ -71,6 +71,7 @@ public class BrightestDayLanguageProvider extends FabricLanguageProvider {
         builder.add("message.brightestday.team.full", "That team is full.");
         builder.add("death.attack.brightestday.ring_construct", "%1$s was struck down by a ring construct");
         builder.add("death.attack.brightestday.ring_construct.player", "%1$s was struck down by %2$s's ring");
+        builder.add("death.attack.brightestday.ring_construct.item", "%1$s was struck down by %2$s's ring using %3$s");
         builder.add("death.attack.brightestday.heart_torn", "%1$s tore out their own heart with their red ring");
         builder.add("message.brightestday.red_heart.bound", "The red ring has replaced your heart. It will not come off without taking your life with it.");
         builder.add("message.brightestday.red_heart.warning", "Your heart lurches. The ring IS your heart now.");
