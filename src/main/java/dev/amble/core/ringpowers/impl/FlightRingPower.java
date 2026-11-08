@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.amble.BrightestDay;
 import dev.amble.core.BrightestDayAttachments;
+import dev.amble.core.BrightestDayEffects;
 import dev.amble.core.flight.FlightBoost;
 import dev.amble.core.items.PowerRingItem;
 import dev.amble.core.ringpowers.LanternCorps;
@@ -12,7 +13,6 @@ import dev.amble.core.ringpowers.RingPower;
 import dev.amble.core.ringpowers.RingPowerCategory;
 import dev.amble.core.ringpowers.RingPowerRegistry;
 import dev.amble.core.ringpowers.OrangeHoard;
-import dev.amble.mixin.CombatTrackerAccessor;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.DamageTypeTags;
@@ -30,7 +30,7 @@ import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 
 public class FlightRingPower extends RingPower<FlightRingPower.Data> {
-    public static Consumer<Boolean> compactSender = compact -> {};
+    public static Consumer<Boolean> compactSender = _ -> {};
     public static BooleanSupplier launching = () -> false;
 
     public static final double CRUISE_SPEED = 1.2;
@@ -133,8 +133,8 @@ public class FlightRingPower extends RingPower<FlightRingPower.Data> {
     }
 
     public static double cruiseSpeed(Player player) {
-        double result = speedForLevel(speedLevel(player));
-        return ((CombatTrackerAccessor) player.getCombatTracker()).getInCombat() ? Math.min(result, speedForLevel(SPEED_LEVELS / 2)) : result;
+        double value = speedForLevel(speedLevel(player));
+        return player.hasEffect(BrightestDayEffects.STUNNED) ? value / 2. : value;
     }
 
     public static double boostSpeed(double cruise) {

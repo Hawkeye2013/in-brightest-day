@@ -1,15 +1,9 @@
 package dev.amble;
 
 import dev.amble.config.BrightestDayConfig;
-import dev.amble.core.BrightestDayAttachments;
-import dev.amble.core.BrightestDayBlockEntityTypes;
-import dev.amble.core.BrightestDayBlocks;
-import dev.amble.core.BrightestDayCreativeTabs;
-import dev.amble.core.BrightestDayItems;
+import dev.amble.core.*;
 import dev.amble.core.compat.Compat;
 import dev.amble.core.mannequin.Mannequins;
-import dev.amble.core.BrightestDayMenus;
-import dev.amble.core.BrightestDaySounds;
 import dev.amble.core.networking.Networking;
 import dev.amble.core.comms.Comms;
 import dev.amble.core.comms.Megaphone;
@@ -112,6 +106,8 @@ public class BrightestDay implements ModInitializer {
 		BrightestDayMenus.init();
 		BrightestDaySounds.init();
 		BrightestDayCreativeTabs.init();
+		BrightestDayEffects.init();
+
 		RingPowerRegistry.init();
 		BrightestDayAttachments.init();
 		RingPowerTicker.init();

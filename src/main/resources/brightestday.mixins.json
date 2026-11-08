@@ -8,6 +8,7 @@
     "AnimalMixin",
     "AvatarMixin",
     "CombatTrackerAccessor",
+    "CombatTrackerMixin",
     "ConstructContainerItemMixin",
     "ConstructFurnaceMixin",
     "ConstructItemStackMixin",
