@@ -6,6 +6,7 @@ import dev.amble.core.BrightestDayBlockEntityTypes;
 import dev.amble.core.BrightestDayBlocks;
 import dev.amble.core.BrightestDayCreativeTabs;
 import dev.amble.core.BrightestDayItems;
+import dev.amble.core.compat.Compat;
 import dev.amble.core.mannequin.Mannequins;
 import dev.amble.core.BrightestDayMenus;
 import dev.amble.core.BrightestDaySounds;
@@ -92,7 +93,6 @@ import dev.amble.core.loyalty.RingSuspension;
 import dev.amble.core.team.LanternTeams;
 import net.fabricmc.api.ModInitializer;
 
-import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.Identifier;
 
 import org.slf4j.Logger;
@@ -195,6 +195,8 @@ public class BrightestDay implements ModInitializer {
 		RingLoyalty.init();
 		RingSuspension.init();
 		LanternTeams.init();
+
+		Compat.init();
 	}
 
 	public static Identifier id(String path) {

@@ -29,6 +29,10 @@ repositories {
 		name = "HenkelMaven"
 		url = uri("https://maven.maxhenkel.de/repository/public")
 	}
+	maven {
+		name = "Nucleoid"
+		url = uri("https://maven.nucleoid.xyz/")
+	}
 }
 
 fabricApi {
@@ -57,6 +61,8 @@ dependencies {
 		exclude group: "net.java.dev.jna"
 	}
 	include "com.alphacephei:vosk:${project.vosk_version}"
+
+	compileOnly "eu.pb4:placeholder-api:${project.placeholder_version}"
 }
 
 processResources {
