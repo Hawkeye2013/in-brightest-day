@@ -36,7 +36,6 @@ public class BlastConstruct extends ConstructRingPower {
     private static final float SCALE_PER_SIZE = 0.4F;
     private static final float KNOCKBACK_PER_SIZE = 0.2F;
     private static final int[] COST_MULTIPLIERS = {1, 2, 5, 6, 8, 10};
-    private static final int[] COOLDOWN_MULTIPLIERS = {1, 2, 3, 4, 6, 8};
 
     private static final ExplosionDamageCalculator BLOCKS_ONLY = new ExplosionDamageCalculator() {
         @Override
@@ -91,8 +90,8 @@ public class BlastConstruct extends ConstructRingPower {
 
     @Override
     public int cooldownTicks(int size) {
-        int clamped = Math.clamp(this.costSize(size), 1, COOLDOWN_MULTIPLIERS.length);
-        return 25 * COOLDOWN_MULTIPLIERS[clamped - 1];
+        int clamped = Math.clamp(this.costSize(size), 1, EMPOWERED_MAX_SIZE);
+        return 25 + (clamped - 1) * 5;
     }
 
     @Override
