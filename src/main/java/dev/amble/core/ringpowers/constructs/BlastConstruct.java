@@ -91,7 +91,8 @@ public class BlastConstruct extends ConstructRingPower {
 
     @Override
     public int cooldownTicks(int size) {
-        return 25;
+        int clamped = Math.clamp(this.costSize(size), 1, COOLDOWN_MULTIPLIERS.length);
+        return 25 * COOLDOWN_MULTIPLIERS[clamped - 1];
     }
 
     @Override
