@@ -8,6 +8,7 @@ import dev.amble.core.sculpt.SculptShape;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.core.HolderLookup;
+import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -17,7 +18,7 @@ public class BrightestDayLanguageProvider extends FabricLanguageProvider {
     }
 
     @Override
-    public void generateTranslations(HolderLookup.Provider registryLookup, TranslationBuilder builder) {
+    public void generateTranslations(HolderLookup.@NonNull Provider registryLookup, TranslationBuilder builder) {
         builder.add(BrightestDayItems.GREEN_POWER_RING, "Green Power Ring");
         builder.add(BrightestDayItems.YELLOW_POWER_RING, "Yellow Power Ring");
         builder.add(BrightestDayItems.RED_POWER_RING, "Red Power Ring");
@@ -774,6 +775,8 @@ public class BrightestDayLanguageProvider extends FabricLanguageProvider {
         builder.add("brightestday.server.gliderMobFallSpeed", "Mob Fall Speed");
         builder.add("brightestday.server.gliderMobFallSpeed.desc", "The fastest a mob with a glider can fall, in blocks per tick.");
         builder.add("brightestday.server.flight", "Flight");
+        builder.add("brightestday.server.flightSpeedStunDuration", "Flight Stun Duration");
+        builder.add("brightestday.server.flightSpeedStunDuration.desc", "How many ticks does the speed stun last (20 ticks = 1 second).");
         builder.add("brightestday.server.flightBoostMultiplier", "Boost Multiplier");
         builder.add("brightestday.server.flightBoostMultiplier.desc", "Boosting always reaches top speed, then adds your cruise speed times (this - 1) on top.");
         builder.add("brightestday.server.flightMaxBoostSpeed", "Max Boost Speed");

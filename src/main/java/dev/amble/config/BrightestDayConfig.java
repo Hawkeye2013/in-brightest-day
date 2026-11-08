@@ -108,6 +108,8 @@ public class BrightestDayConfig extends Config {
     public int concussiveCooldownTicks = 20;
 
     public ConfigGroup flight = new ConfigGroup("flight");
+    @ValidatedInt.Restrict(min = 0, max = 1000)
+    public int flightSpeedStunDuration = 10 * 20;
     @ValidatedDouble.Restrict(min = 1.0, max = 5.0)
     public double flightBoostMultiplier = 2.5;
     @ValidatedDouble.Restrict(min = 4.0, max = 16.0)

@@ -1,5 +1,6 @@
 package dev.amble.mixin;
 
+import dev.amble.config.BrightestDayConfig;
 import dev.amble.core.BrightestDayEffects;
 import dev.amble.core.ringpowers.impl.FlightRingPower;
 import net.minecraft.world.damagesource.CombatTracker;
@@ -31,6 +32,6 @@ public class CombatTrackerMixin {
         //noinspection ConstantValue - schizo
         if (this.mob.isAlive() && shouldEnterCombat(source) && this.mob instanceof Player player
                 && FlightRingPower.canFly(player))
-            player.addEffect(new MobEffectInstance(BrightestDayEffects.STUNNED, 5 * 20, 0, false, false));
+            player.addEffect(new MobEffectInstance(BrightestDayEffects.STUNNED, BrightestDayConfig.get().flightSpeedStunDuration, 0, false, false));
     }
 }

@@ -133,8 +133,12 @@ public class FlightRingPower extends RingPower<FlightRingPower.Data> {
     }
 
     public static double cruiseSpeed(Player player) {
-        double value = speedForLevel(speedLevel(player));
-        return player.hasEffect(BrightestDayEffects.STUNNED) ? value / 2. : value;
+        int speedLevel = speedLevel(player);
+
+        if (player.hasEffect(BrightestDayEffects.STUNNED))
+            speedLevel /= 2;
+
+        return speedForLevel(speedLevel);
     }
 
     public static double boostSpeed(double cruise) {
@@ -222,7 +226,7 @@ public class FlightRingPower extends RingPower<FlightRingPower.Data> {
     }
 
     public static void registerEvents() {
-        ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, amount) ->
+        ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, _) ->
                 !(entity instanceof Player player && source.is(DamageTypeTags.IS_FALL) && hasFlight(player) && PowerRingItem.hasCharge(player)));
     }
 }
