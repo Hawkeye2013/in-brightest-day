@@ -60,7 +60,6 @@ dependencies {
 	implementation("com.alphacephei:vosk:${project.vosk_version}") {
 		exclude group: "net.java.dev.jna"
 	}
-	include "com.alphacephei:vosk:${project.vosk_version}"
 
 	compileOnly "eu.pb4:placeholder-api:${project.placeholder_version}"
 }
