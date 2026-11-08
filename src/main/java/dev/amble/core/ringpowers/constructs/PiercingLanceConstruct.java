@@ -26,7 +26,7 @@ public class PiercingLanceConstruct extends ConstructRingPower {
     }
 
     @Override
-    public int useCost() {
+    public int baseCost() {
         return BrightestDayConfig.get().lanceCost;
     }
 

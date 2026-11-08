@@ -15,7 +15,7 @@ public class SculptConstruct extends ConstructRingPower {
     }
 
     @Override
-    public int useCost() {
+    public int baseCost() {
         return USE_COST;
     }
 

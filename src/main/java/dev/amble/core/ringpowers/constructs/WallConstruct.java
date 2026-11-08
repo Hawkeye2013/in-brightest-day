@@ -3,7 +3,6 @@ package dev.amble.core.ringpowers.constructs;
 import dev.amble.core.ringpowers.CorpsArsenal;
 import dev.amble.core.ringpowers.LanternCorps;
 import dev.amble.BrightestDay;
-import dev.amble.config.BrightestDayConfig;
 import dev.amble.core.items.PowerRingItem;
 import dev.amble.core.walls.WallGeometry;
 import dev.amble.core.walls.WallLines;
@@ -39,7 +38,7 @@ public class WallConstruct extends ConstructRingPower {
     }
 
     @Override
-    public int cooldownTicks() {
+    public int cooldownTicks(int size) {
         return 6;
     }
 

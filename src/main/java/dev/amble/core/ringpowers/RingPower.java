@@ -85,7 +85,7 @@ public abstract class RingPower<D> implements Identifiable, Translatable {
     @Environment(EnvType.CLIENT)
     public void tick(AbstractClientPlayer clientPlayer, D data) {}
 
-    public int useCost() {
+    public int baseCost() {
         return 0;
     }
 
