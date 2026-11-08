@@ -106,17 +106,6 @@ jar {
 	}
 }
 
-loom {
-	runs {
-		client {
-			environmentVariable "SDL_VIDEO_DRIVER", "wayland"
-			environmentVariable "__EGL_VENDOR_LIBRARY_FILENAMES", "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json"
-			environmentVariable "MESA_LOADER_DRIVER_OVERRIDE", "zink"
-			programArgs "--username", "Loqor"
-		}
-	}
-}
-
 // configure the maven publication
 publishing {
 	publications {
