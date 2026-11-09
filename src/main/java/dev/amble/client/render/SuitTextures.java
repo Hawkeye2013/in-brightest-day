@@ -2,6 +2,7 @@ package dev.amble.client.render;
 
 import com.mojang.blaze3d.platform.NativeImage;
 import dev.amble.BrightestDay;
+import dev.amble.core.progression.Emotion;
 import dev.amble.client.effects.VoxelRenderer;
 import dev.amble.core.ringpowers.EyePaint;
 import dev.amble.core.ringpowers.LanternCorps;
@@ -24,7 +25,6 @@ import java.io.InputStream;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
@@ -68,7 +68,7 @@ final class SuitTextures {
         boolean outer = maskLayer == MaskLayer.OUTER || maskLayer == MaskLayer.AUTO && skin.hatFace();
         String resolved = SuitStyles.resolve(corps, style);
         boolean comic = SuitStyles.comic(resolved);
-        int[] suit = progress > 0.0F ? suit(corps, resolved, ringArm, slim, maskOffset) : null;
+        int[] suit = progress > 0.0F ? suit(corps, resolved, slim, maskOffset) : null;
         if (suit == null) progress = 0.0F;
         if (progress <= 0.0F && (eyeProgress <= 0.0F || eyes.isEmpty())) return null;
 
@@ -251,11 +251,11 @@ final class SuitTextures {
         return ((hash ^ (hash >>> 16)) & 0xFFFF) / 65536.0F;
     }
 
-    private static int @Nullable [] suit(LanternCorps corps, String style, HumanoidArm ringArm, boolean slim, int maskOffset) {
-        String key = corps.getSerializedName() + "/" + style + "/" + ringArm.ordinal() + "/" + slim + "/" + maskOffset;
+    private static int @Nullable [] suit(LanternCorps corps, String style, boolean slim, int maskOffset) {
+        String key = corps.getSerializedName() + "/" + style + "/" + slim + "/" + maskOffset;
         return SUITS.computeIfAbsent(key, unused -> {
-            int[] pixels = SuitStyles.comic(style) ? loadComic(corps, style) : loadSuit(corps, ringArm);
-            if (pixels == null) pixels = loadSuit(corps, ringArm.getOpposite());
+            int[] pixels = SuitStyles.comic(style) ? loadComic(corps, style) : null;
+            if (pixels == null) pixels = loadSuit(corps);
             if (pixels == null) return Optional.empty();
             if (!slim) pixels = widen(pixels);
             return Optional.of(shiftHead(pixels, maskOffset));
@@ -267,10 +267,17 @@ final class SuitTextures {
         return pixels != null && pixels.length == SIZE * SIZE ? pixels : null;
     }
 
-    private static int @Nullable [] loadSuit(LanternCorps corps, HumanoidArm side) {
-        Identifier path = BrightestDay.id("textures/lanterns/suits/" + corps.getSerializedName() + "_lantern_" + side.name().toLowerCase(Locale.ROOT) + ".png");
-        int[] pixels = read(path);
+    private static int @Nullable [] loadSuit(LanternCorps corps) {
+        int[] pixels = read(BrightestDay.id("textures/lanterns/suits/" + emotion(corps) + ".png"));
         return pixels != null && pixels.length == SIZE * SIZE ? pixels : null;
+    }
+
+    private static String emotion(LanternCorps corps) {
+        return switch (corps) {
+            case WHITE -> "life";
+            case BLACK -> "death";
+            default -> Emotion.of(corps).map(Emotion::getSerializedName).orElse(corps.getSerializedName());
+        };
     }
 
     private static int[] shiftHead(int[] pixels, int offset) {
